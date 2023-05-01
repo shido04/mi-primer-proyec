@@ -8,4 +8,9 @@
     <input type="submit" class="btn btn-default" value="Entrar" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
+
+<p>¿No tienes una cuenta? ¡Crea una! <a href="{% url 'register' %}">aquí</a></p>
+<input type="submit" value="Entrar" />
+<input type="hidden" name="next" value="{{ next }}" />
 {% endblock %}
+

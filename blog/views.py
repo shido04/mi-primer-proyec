@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, RegisterForm
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from .models import Post
@@ -88,3 +88,13 @@ def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = RegisterForm()
+    return render(request, "registration/register.html", {"form": form})
